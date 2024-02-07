@@ -10,10 +10,10 @@ const createEyeGlassZodSchema = z.object({
     name: z.string({
       required_error: "Product name is required",
     }),
-    price: z.number({
+    price: z.string({
       required_error: "Product price is required",
     }),
-    quantity: z.number({
+    quantity: z.string({
       required_error: "Product price is required",
     }),
     image: z.string({

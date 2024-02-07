@@ -7,8 +7,8 @@ export type IGender = "men" | "women" | "unisex";
 
 export type IEyeGlass = {
   name: String;
-  price: Number;
-  quantity: Number;
+  price: string;
+  quantity: string;
   image:String;
   frameMaterial: IFrameMaterial;
   frameShape: IFrameShape;

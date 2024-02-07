@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 import config from "./config";
 import { Server } from "http";
 import app from "./app";
-import { errorLogger, logger } from "./shared/logger";
-
-process.on("uncaughtException", (error) => {
-  console.log(error);
-  process.exit(1);
-});
 
 let server: Server;
 async function main() {
@@ -21,6 +15,12 @@ async function main() {
   } catch (e) {
     console.log("failed to connect database");
   }
+  main();
+  process.on("uncaughtException", (error) => {
+    console.log(error);
+    process.exit(1);
+  });
+
   process.on("unhandledRejection", (error) => {
     if (server) {
       server.close(() => {
@@ -32,4 +32,3 @@ async function main() {
     }
   });
 }
-main();

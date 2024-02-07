@@ -15,11 +15,11 @@ const eyeGlassSchema = new Schema<IEyeGlass>({
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   quantity: {
-    type: Number,
+    type: String,
     required: true,
   },
   image: {

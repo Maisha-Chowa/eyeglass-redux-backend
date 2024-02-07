@@ -1,6 +1,6 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import config from "../../config";
-import { errorLogger } from "../../shared/logger";
+// import { errorLogger } from "../../shared/logger";
 import { IGenericErrorMessage } from "../../interfaces/error";
 import handleValidationError from "../../errors/handleValidationError";
 import { ZodError } from "zod";
