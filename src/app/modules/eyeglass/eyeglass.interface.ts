@@ -6,7 +6,7 @@ export type ILensType = "single-vision" | "bifocal" | "progressive";
 export type IGender = "men" | "women" | "unisex";
 
 export type IEyeGlass = {
-  name: String;
+  name: string;
   price: string;
   quantity: string;
   image:String;

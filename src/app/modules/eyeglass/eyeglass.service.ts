@@ -15,23 +15,23 @@ const createEyeGlass = async (payload: IEyeGlass): Promise<IEyeGlass> => {
 
 const getAllEyeGlass = async (
   filters: IEyeGlassFilters,
-  paginationOptions: IPaginationOptions,
+  paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IEyeGlass[]>> => {
-  const { searchTerm, ...filtersData } = filters
+  const { searchTerm, ...filtersData } = filters;
 
   const { page, limit, skip, sortBy, sortOrder } =
-    paginationHelpers.calculatePagination(paginationOptions)
+    paginationHelpers.calculatePagination(paginationOptions);
 
-  const andConditions = []
+  const andConditions = [];
   if (searchTerm) {
     andConditions.push({
-      $or: eyeGlassSearchableFields.map(field => ({
+      $or: eyeGlassSearchableFields.map((field) => ({
         [field]: {
           $regex: searchTerm,
-          $options: 'i',
+          $options: "i",
         },
       })),
-    })
+    });
   }
 
   if (Object.keys(filtersData).length) {
@@ -39,26 +39,26 @@ const getAllEyeGlass = async (
       $and: Object.entries(filtersData).map(([field, value]) => ({
         [field]: value,
       })),
-    })
+    });
   }
 
-  const sortConditions: { [key: string]: SortOrder } = {}
+  const sortConditions: { [key: string]: SortOrder } = {};
   if (sortBy && sortOrder) {
-    sortConditions[sortBy] = sortOrder
+    sortConditions[sortBy] = sortOrder;
   }
   const whereConditions =
     andConditions.length > 0
       ? {
           $and: andConditions,
         }
-      : {}
+      : {};
   const result = await eyeglassModel
     .find(whereConditions)
     .sort(sortConditions)
     .skip(skip)
-    .limit(limit)
+    .limit(limit);
 
-  const total = await eyeglassModel.countDocuments()
+  const total = await eyeglassModel.countDocuments();
 
   return {
     meta: {
@@ -67,21 +67,18 @@ const getAllEyeGlass = async (
       total,
     },
     data: result,
-  }
-}
+  };
+};
 
-const getSingleEyeGlass = async (
-  id: string,
-): Promise<IEyeGlass | null> => {
-  const result = await eyeglassModel.findById(id)
-  return result
-}
+const getSingleEyeGlass = async (id: string): Promise<IEyeGlass | null> => {
+  const result = await eyeglassModel.findById(id);
+  return result;
+};
 
 const updateEyeGlass = async (
   id: string,
-  payload: Partial<IEyeGlass>,
+  payload: IEyeGlass
 ): Promise<IEyeGlass | null> => {
-  
   const result = await eyeglassModel.findOneAndUpdate(
     {
       _id: id,
@@ -89,21 +86,18 @@ const updateEyeGlass = async (
     payload,
     {
       new: true,
-    },
-  )
-  return result
-}
-// const deleteEyeGlass = async (
-//   id: string,
-// ): Promise<IEyeGlass | null> => {
-//   const result = await eyeglassModel.findByIdAndDelete(id)
-//   return result
-// }
-
+    }
+  );
+  return result;
+};
+const deleteEyeGlass = async (id: string) => {
+  const result = await eyeglassModel.findByIdAndDelete(id);
+  // return result
+};
 export const eyeGlassService = {
   createEyeGlass,
   getAllEyeGlass,
   getSingleEyeGlass,
   updateEyeGlass,
- // deleteEyeGlass,
+  deleteEyeGlass,
 };

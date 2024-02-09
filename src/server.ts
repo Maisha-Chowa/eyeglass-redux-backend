@@ -15,20 +15,20 @@ async function main() {
   } catch (e) {
     console.log("failed to connect database");
   }
-  main();
-  process.on("uncaughtException", (error) => {
-    console.log(error);
-    process.exit(1);
-  });
-
-  process.on("unhandledRejection", (error) => {
-    if (server) {
-      server.close(() => {
-        console.log(error);
-        process.exit(1);
-      });
-    } else {
-      process.exit(1);
-    }
-  });
 }
+main();
+// process.on("uncaughtException", (error) => {
+//   console.log(error);
+//   process.exit(1);
+// });
+
+// process.on("unhandledRejection", (error) => {
+//   if (server) {
+//     server.close(() => {
+//       console.log(error);
+//       process.exit(1);
+//     });
+//   } else {
+//     process.exit(1);
+//   }
+// });

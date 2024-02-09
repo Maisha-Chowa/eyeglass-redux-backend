@@ -15,7 +15,7 @@ router.patch(
   eyeGlassController.updateEyeGlass
 );
 router.get("/:id", eyeGlassController.getSingleEyeGlass);
-//router.delete("/:id", eyeGlassController.deleteEyeGlass);
+router.delete("/:id", eyeGlassController.deleteEyeGlass);
 router.get("/", eyeGlassController.getAllEyeGlass);
 
 export const eyeglassRoutes = router;

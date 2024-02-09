@@ -34,10 +34,10 @@ const getAllEyeGlass = (filters, paginationOptions) => __awaiter(void 0, void 0,
     const andConditions = [];
     if (searchTerm) {
         andConditions.push({
-            $or: eyeglass_constants_1.eyeGlassSearchableFields.map(field => ({
+            $or: eyeglass_constants_1.eyeGlassSearchableFields.map((field) => ({
                 [field]: {
                     $regex: searchTerm,
-                    $options: 'i',
+                    $options: "i",
                 },
             })),
         });
@@ -85,16 +85,14 @@ const updateEyeGlass = (id, payload) => __awaiter(void 0, void 0, void 0, functi
     });
     return result;
 });
-// const deleteEyeGlass = async (
-//   id: string,
-// ): Promise<IEyeGlass | null> => {
-//   const result = await eyeglassModel.findByIdAndDelete(id)
-//   return result
-// }
+const deleteEyeGlass = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield eyeglass_model_1.eyeglassModel.findByIdAndDelete(id);
+    // return result
+});
 exports.eyeGlassService = {
     createEyeGlass,
     getAllEyeGlass,
     getSingleEyeGlass,
     updateEyeGlass,
-    // deleteEyeGlass,
+    deleteEyeGlass,
 };

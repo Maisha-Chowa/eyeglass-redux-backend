@@ -9,46 +9,54 @@ import {
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 
-const eyeGlassSchema = new Schema<IEyeGlass>({
-  name: {
-    type: String,
-    required: true,
+const eyeGlassSchema = new Schema<IEyeGlass>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    quantity: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    frameMaterial: {
+      type: String,
+      required: true,
+      enum: frameMaterial,
+    },
+    frameShape: {
+      type: String,
+      required: true,
+      enum: frameShape,
+    },
+    lensType: {
+      type: String,
+      required: true,
+      enum: lensType,
+    },
+    brand: { type: String },
+    gender: {
+      type: String,
+      required: true,
+      enum: gender,
+    },
+    color: { type: String },
   },
-  price: {
-    type: String,
-    required: true,
-  },
-  quantity: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  frameMaterial: {
-    type: String,
-    required: true,
-    enum: frameMaterial,
-  },
-  frameShape: {
-    type: String,
-    required: true,
-    enum: frameShape,
-  },
-  lensType: {
-    type: String,
-    required: true,
-    enum: lensType,
-  },
-  brand: { type: String },
-  gender: {
-    type: String,
-    required: true,
-    enum: gender,
-  },
-  color: { type: String },
-});
+  {
+    timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
 
 eyeGlassSchema.pre("save", async function (next) {
   const isExist = await eyeglassModel.findOne({
@@ -58,7 +66,7 @@ eyeGlassSchema.pre("save", async function (next) {
   if (isExist) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      "Academic Semester is already exist !!!"
+      "eyeglass is already exist !!!"
     );
   }
   next();

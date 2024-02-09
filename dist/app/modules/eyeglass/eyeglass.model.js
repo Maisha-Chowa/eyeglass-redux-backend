@@ -56,6 +56,11 @@ const eyeGlassSchema = new mongoose_1.Schema({
         enum: eyeglass_constants_1.gender,
     },
     color: { type: String },
+}, {
+    timestamps: true,
+    toJSON: {
+        virtuals: true,
+    },
 });
 eyeGlassSchema.pre("save", function (next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -64,7 +69,7 @@ eyeGlassSchema.pre("save", function (next) {
             price: this.price,
         });
         if (isExist) {
-            throw new ApiError_1.default(http_status_1.default.CONFLICT, "Academic Semester is already exist !!!");
+            throw new ApiError_1.default(http_status_1.default.CONFLICT, "eyeglass is already exist !!!");
         }
         next();
     });

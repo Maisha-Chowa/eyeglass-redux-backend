@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_route_1 = require("../modules/user/user.route");
 const eyeglass_route_1 = require("../modules/eyeglass/eyeglass.route");
+const salesManagement_route_1 = require("../modules/salesManagement/salesManagement.route");
 const router = express_1.default.Router();
 const routes = [
     {
@@ -15,6 +16,10 @@ const routes = [
     {
         path: "/eyeglass",
         route: eyeglass_route_1.eyeglassRoutes,
+    },
+    {
+        path: "/salesManagement",
+        route: salesManagement_route_1.salesManagementRoutes,
     },
 ];
 routes.forEach((route) => router.use(route.path, route.route));

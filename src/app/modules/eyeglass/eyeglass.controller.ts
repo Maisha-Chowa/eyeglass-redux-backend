@@ -61,21 +61,21 @@ const updateEyeGlass = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const deleteEyeGlass = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const result = await eyeGlassService.deleteEyeGlass(id);
+const deleteEyeGlass = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await eyeGlassService.deleteEyeGlass(id);
 
-//   sendResponse<IEyeGlass>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: "Eye Glass deleted successfully !",
-//     data: result,
-//   });
-// });
+  sendResponse<IEyeGlass>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Eye Glass deleted successfully !",
+    //data: result,
+  });
+});
 export const eyeGlassController = {
   createEyeGlass,
   getAllEyeGlass,
   getSingleEyeGlass,
   updateEyeGlass,
- // deleteEyeGlass,
+  deleteEyeGlass,
 };
