@@ -44,12 +44,12 @@ const updateEyeGlassZodSchema = z.object({
       })
       .optional(),
     price: z
-      .number({
+      .string({
         required_error: "Product price is required",
       })
       .optional(),
     quantity: z
-      .number({
+      .string({
         required_error: "Product price is required",
       })
       .optional(),
